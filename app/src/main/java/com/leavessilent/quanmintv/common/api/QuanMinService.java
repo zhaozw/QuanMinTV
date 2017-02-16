@@ -1,6 +1,9 @@
 package com.leavessilent.quanmintv.common.api;
 
+import com.leavessilent.quanmintv.category.model.CategoryModel;
 import com.leavessilent.quanmintv.home.model.HomeModel;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -12,4 +15,7 @@ import retrofit2.http.GET;
 public interface QuanMinService {
     @GET("page/appv2-index/info.json")
     Observable<HomeModel> getHomeModel();
+
+    @GET("categories/list.json")
+    Observable<List<CategoryModel>> getCategoryModelList();
 }

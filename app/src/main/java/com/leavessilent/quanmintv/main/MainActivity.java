@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.leavessilent.quanmintv.R;
-import com.leavessilent.quanmintv.category.CategoryFragment;
+import com.leavessilent.quanmintv.category.view.CategoryFragment;
 import com.leavessilent.quanmintv.home.view.HomeFragment;
 import com.leavessilent.quanmintv.live.view.LiveFragment;
 import com.leavessilent.quanmintv.mine.MineFragment;
