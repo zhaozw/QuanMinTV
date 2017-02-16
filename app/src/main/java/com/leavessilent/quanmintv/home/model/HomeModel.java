@@ -191,13 +191,9 @@ public class HomeModel {
     }
 
     public static class AppindexBean {
-        /**
-         * link_object : {"no":"666","nick":"解说小漠","avatar":"http://image.quanmin.tv/avatar/bd6033825a6541e5e0a26af5d8f0d560png?imageView2/2/w/300/","follow":"1208982","uid":"666","play_at":"2017-02-15 16:27:18","screen":0,"views":"0","intro":"【小漠新浪微博】weibo.com/ixmxiaomo \n【小漠腾讯微博】t.qq.com/lol-xiaomo \n\n【小漠娃娃店】wawa.ixm.tv/\n【小漠零食店】lolxiaochi.taobao.com\n【小漠男装店】xiezi.ixm.tv/\n【小漠男装店】lolhaoyifu.taobao.com/\n【小漠外设店】lolxiaomo.taobao.com/..","videoQuality":"234","thumb":"http://image.quanmin.tv/4b58ee79b9c3d20d9572d17386ed3e4djpg","stream":"http://flv.quanmin.tv/live/666_L3.flv","position":"","announcement":"关注微博ixm解说小漠直播有预告","id":"100996","video":"http://thumb.quanmin.tv/666.mp4?t=1487152200","slug":"xiaomo","category_id":"1","cover":"666-1487152443-489.jpg","status":"2","recommend_image":"http://image.quanmin.tv/de73e608930d71bce9ba5793dd577b05jpg","weight":"0","start_time":"1487147238.486","check":"1","priv":"0","category_name":"英雄联盟","title":"小漠的王者之路今天开始！","source":"ws","last_play_at":"","landscape":"1","view":"1326741","app_shuffling_image":"http://image.quanmin.tv/4b58ee79b9c3d20d9572d17386ed3e4djpg","categoryId":"1","hidden":false,"play_status":true}
-         * thumb : null
-         */
 
         private LinkObject link_object;
-        private Object thumb;
+
 
         public LinkObject getLink_object() {
             return link_object;
@@ -206,16 +202,6 @@ public class HomeModel {
         public void setLink_object(LinkObject link_object) {
             this.link_object = link_object;
         }
-
-        public Object getThumb() {
-            return thumb;
-        }
-
-        public void setThumb(Object thumb) {
-            this.thumb = thumb;
-        }
-
-
     }
 
     public static class AppclassificationBean {
@@ -513,13 +499,13 @@ public class HomeModel {
              * screen : 0
              * views : 0
              * intro : 【小漠新浪微博】weibo.com/ixmxiaomo
-             【小漠腾讯微博】t.qq.com/lol-xiaomo
-
-             【小漠娃娃店】wawa.ixm.tv/
-             【小漠零食店】lolxiaochi.taobao.com
-             【小漠男装店】xiezi.ixm.tv/
-             【小漠男装店】lolhaoyifu.taobao.com/
-             【小漠外设店】lolxiaomo.taobao.com/..
+             * 【小漠腾讯微博】t.qq.com/lol-xiaomo
+             * <p>
+             * 【小漠娃娃店】wawa.ixm.tv/
+             * 【小漠零食店】lolxiaochi.taobao.com
+             * 【小漠男装店】xiezi.ixm.tv/
+             * 【小漠男装店】lolhaoyifu.taobao.com/
+             * 【小漠外设店】lolxiaomo.taobao.com/..
              * videoQuality : 234
              * thumb : http://snap.quanmin.tv/666-1487152443-489.jpg?imageView2/2/w/390/
              * stream : http://flv.quanmin.tv/live/666_L3.flv

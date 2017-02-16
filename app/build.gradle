@@ -39,4 +39,6 @@ dependencies {
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.youth.banner:banner:1.4.8'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

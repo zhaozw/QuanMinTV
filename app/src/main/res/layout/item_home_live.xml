@@ -12,9 +12,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/item_tv_title"
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawableLeft="@mipmap/item_home_title_left"
+            android:gravity="center_vertical"
             android:text="  栏目名称"
             android:textSize="12sp"
             android:textStyle="bold"/>
@@ -33,7 +35,7 @@
             android:clickable="true"
             android:drawableRight="@drawable/item_home_more"
             android:gravity="center_vertical"
-            android:text="瞅瞅"
+            android:text="瞅一瞅"
             android:textColor="@drawable/item_home_text_color"
             android:textSize="10sp"/>
     </LinearLayout>

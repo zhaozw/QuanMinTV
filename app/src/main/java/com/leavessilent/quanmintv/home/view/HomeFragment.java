@@ -35,12 +35,6 @@ public class HomeFragment extends BaseFragment<IHomeView, HomePresenter> impleme
     private HomeAdapter mAdapter;
     private AnimationDrawable mAnimationDrawable;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
-
     @Override
     protected void init(Bundle savedInstanceState) {
         mAnimationDrawable = ((AnimationDrawable) mLoadingImage.getDrawable());
@@ -49,6 +43,7 @@ public class HomeFragment extends BaseFragment<IHomeView, HomePresenter> impleme
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mHomeRv.setLayoutManager(manager);
         mPresenter.loadingData();
+        showLoading();
     }
 
     @Override

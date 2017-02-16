@@ -23,6 +23,7 @@ public class HomePresenter extends BasePresenter<IHomeView> implements IHomePres
         mModel.getHomeModel(new OnLoadingDataListener<HomeModel>() {
             @Override
             public void onComplete() {
+                mView.hideLoading();
             }
 
             @Override
