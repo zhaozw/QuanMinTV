@@ -36,7 +36,7 @@ public class LinkObject {
     private String source;
     private String last_play_at;
     private String landscape;
-    private String view;
+    private int view;
     private String app_shuffling_image;
     private String categoryId;
     private boolean hidden;
@@ -282,11 +282,11 @@ public class LinkObject {
         this.landscape = landscape;
     }
 
-    public String getView() {
+    public int getView() {
         return view;
     }
 
-    public void setView(String view) {
+    public void setView(int view) {
         this.view = view;
     }
 

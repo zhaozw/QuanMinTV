@@ -16,4 +16,6 @@ public interface ICategoryView {
 
     void setData(List<CategoryModel> data);
 
+    void showError(Throwable e);
+
 }

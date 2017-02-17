@@ -2,6 +2,8 @@ package com.leavessilent.quanmintv.adapter;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +22,9 @@ import com.youth.banner.BannerConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
 
 /**
+ * 首页的RecyclerView 适配器
  * Created by Administrator on 2017/2/16.
  */
 
@@ -32,11 +34,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_LIVE = 2;
 
     public static final String TAG = HomeAdapter.class.getSimpleName();
+    private final Context mContext;
 
     private HomeModel mHomeModel;
     private LayoutInflater mInflater;
 
     public HomeAdapter(Context context, HomeModel homeModel) {
+        mContext = context;
         mHomeModel = homeModel;
         mInflater = LayoutInflater.from(context);
     }
@@ -91,14 +95,119 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 adBindViewHolder(holder, position);
                 break;
             case TYPE_CLASSIFY:
+                classyBindViewHolder(holder, position);
                 break;
             case TYPE_LIVE:
+                liveBindViewHolder(holder, position);
                 break;
         }
     }
 
     /**
-     * 将绑定轮播页数据
+     * 绑定直播房间数据
+     *
+     * @param holder
+     * @param position
+     */
+    private void liveBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof LiveViewHolder) {
+            LiveViewHolder liveViewHolder = (LiveViewHolder) holder;
+            List<HomeModel.ListBean> list = mHomeModel.getList();
+            liveViewHolder.mTitleTv.setText("  " + list.get(position).getName());
+            GridLayoutManager layoutManager = new GridLayoutManager(mContext, 2);
+            liveViewHolder.mRecyclerView.setLayoutManager(layoutManager);
+
+            LiveAdapter adapter = new LiveAdapter(mContext, null);
+            liveViewHolder.mRecyclerView.setAdapter(adapter);
+            List<LinkObject> data = null;
+            data = new ArrayList<>();
+
+            String slug = list.get(position).getSlug();
+            if ("app-recommendation".equals(slug)) {
+                for (HomeModel.ApprecommendationBean rem : mHomeModel.getApprecommendation()) {
+                    data.add(rem.getLink_object());
+                }
+            } else if ("app-lol".equals(slug)) {
+                for (HomeModel.ApplolBean value : mHomeModel.getApplol()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-beauty".equals(slug)) {
+                for (HomeModel.ApplolBean value : mHomeModel.getApplol()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-heartstone".equals(slug)) {
+                for (HomeModel.AppheartstoneBean value : mHomeModel.getAppheartstone()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-huwai".equals(slug)) {
+                for (HomeModel.ApphuwaiBean value : mHomeModel.getApphuwai()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-overwatch".equals(slug)) {
+                for (HomeModel.AppoverwatchBean value : mHomeModel.getAppoverwatch()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-blizzard".equals(slug)) {
+                for (HomeModel.AppblizzardBean value : mHomeModel.getAppblizzard()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-qqfeiche".equals(slug)) {
+                for (HomeModel.AppqqfeicheBean value : mHomeModel.getAppqqfeiche()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-mobilegame".equals(slug)) {
+                for (HomeModel.AppmobilegameBean value : mHomeModel.getAppmobilegame()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-wangzhe".equals(slug)) {
+                for (HomeModel.AppwangzheBean value : mHomeModel.getAppwangzhe()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-dota2".equals(slug)) {
+                for (HomeModel.Appdota2Bean value : mHomeModel.getAppdota2()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-tvgame".equals(slug)) {
+                for (HomeModel.ApptvgameBean value : mHomeModel.getApptvgame()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-webgame".equals(slug)) {
+                for (HomeModel.AppwebgameBean value : mHomeModel.getAppwebgame()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-dnf".equals(slug)) {
+                for (HomeModel.AppdnfBean value : mHomeModel.getAppdnf()) {
+                    data.add(value.getLink_object());
+                }
+            } else if ("app-minecraft".equals(slug)) {
+                for (HomeModel.AppminecraftBean value : mHomeModel.getAppminecraft()) {
+                    data.add(value.getLink_object());
+                }
+            }
+
+            adapter.update(data);
+
+
+        }
+    }
+
+    /**
+     * 绑定分类数据
+     *
+     * @param holder
+     * @param position
+     */
+    private void classyBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ClassifyViewHolder) {
+            ClassifyViewHolder classifyViewHolder = (ClassifyViewHolder) holder;
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            classifyViewHolder.mRecyclerView.setLayoutManager(layoutManager);
+            classifyViewHolder.mRecyclerView.setAdapter(new HomeClassifyAdapter(mContext, mHomeModel.getAppclassification()));
+        }
+    }
+
+    /**
+     * 绑定轮播页数据
      *
      * @param holder
      * @param position
@@ -155,10 +264,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class ClassifyViewHolder extends RecyclerView.ViewHolder {
+        private RecyclerView mRecyclerView;
 
 
         public ClassifyViewHolder(View itemView) {
             super(itemView);
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.item_classify_rv);
         }
     }
+
 }

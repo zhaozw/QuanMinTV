@@ -21,7 +21,7 @@ public class CategoryFragment extends BaseFragment<ICategoryView, CategoryPresen
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
+        mPresenter.getCategories();
     }
 
     @Override

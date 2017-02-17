@@ -2,13 +2,10 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#9cea2f"
-        android:gravity="center"
-        android:text="@string/str_category"
-        android:textColor="#fff"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent">
 
+    </android.support.v7.widget.RecyclerView>
 </FrameLayout>
