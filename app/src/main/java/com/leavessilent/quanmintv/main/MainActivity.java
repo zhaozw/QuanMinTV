@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 // 通过反射创建出该类对象
                 Fragment instance = (Fragment) cls.newInstance();
-                getSupportFragmentManager().beginTransaction().add(R.id.container, instance, tag).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.container, instance, tag).hide(mShowFragment).commit();
                 mShowFragment = instance;
             } catch (InstantiationException e) {
                 e.printStackTrace();

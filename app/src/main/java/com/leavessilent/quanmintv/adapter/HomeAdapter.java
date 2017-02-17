@@ -32,6 +32,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_AD = 0;
     private static final int TYPE_CLASSIFY = 1;
     private static final int TYPE_LIVE = 2;
+    private static final int TYPE_RECOMMEND = 3;
 
     public static final String TAG = HomeAdapter.class.getSimpleName();
     private final Context mContext;
@@ -61,6 +62,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             viewType = TYPE_AD;
         } else if ("app-classification".equals(name)) {
             viewType = TYPE_CLASSIFY;
+        } else if ("app-recommendation".equals(name)) {
+            viewType = TYPE_RECOMMEND;
         } else {
             viewType = TYPE_LIVE;
         }
@@ -79,6 +82,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case TYPE_CLASSIFY:
                 itemView = mInflater.inflate(R.layout.item_home_classify, parent, false);
                 viewHolder = new ClassifyViewHolder(itemView);
+                break;
+            case TYPE_RECOMMEND:
+                itemView = mInflater.inflate(R.layout.item_home_recommend, parent, false);
+                viewHolder = new RecommendViewHolder(itemView);
                 break;
             case TYPE_LIVE:
                 itemView = mInflater.inflate(R.layout.item_home_live, parent, false);
@@ -100,6 +107,26 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case TYPE_LIVE:
                 liveBindViewHolder(holder, position);
                 break;
+            case TYPE_RECOMMEND:
+                recommendViewHolder(holder, position);
+                break;
+        }
+    }
+
+    /**
+     * 绑定推荐数据
+     *
+     * @param holder
+     * @param position
+     */
+    private void recommendViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof RecommendViewHolder) {
+            RecommendViewHolder recommendViewHolder = (RecommendViewHolder) holder;
+            recommendViewHolder.mTitleTv.setText("  " + mHomeModel.getList().get(position).getName());
+            LinearLayoutManager layoutManager = new GridLayoutManager(mContext, 2);
+            recommendViewHolder.mRecyclerView.setLayoutManager(layoutManager);
+            HomeRecommendAdapter adapter = new HomeRecommendAdapter(mContext, mHomeModel.getApprecommendation());
+            recommendViewHolder.mRecyclerView.setAdapter(adapter);
         }
     }
 
@@ -119,15 +146,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             LiveAdapter adapter = new LiveAdapter(mContext, null);
             liveViewHolder.mRecyclerView.setAdapter(adapter);
-            List<LinkObject> data = null;
+            List<LinkObject> data;
             data = new ArrayList<>();
 
             String slug = list.get(position).getSlug();
-            if ("app-recommendation".equals(slug)) {
-                for (HomeModel.ApprecommendationBean rem : mHomeModel.getApprecommendation()) {
-                    data.add(rem.getLink_object());
-                }
-            } else if ("app-lol".equals(slug)) {
+            liveViewHolder.mMoreTv.setText("瞅一瞅");
+            if ("app-lol".equals(slug)) {
                 for (HomeModel.ApplolBean value : mHomeModel.getApplol()) {
                     data.add(value.getLink_object());
                 }
@@ -246,6 +270,19 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private RecyclerView mRecyclerView;
 
         public LiveViewHolder(View itemView) {
+            super(itemView);
+            mTitleTv = (TextView) itemView.findViewById(R.id.item_tv_title);
+            mMoreTv = (TextView) itemView.findViewById(R.id.item_tv_more);
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.item_rv);
+        }
+    }
+
+    public static class RecommendViewHolder extends RecyclerView.ViewHolder {
+        private TextView mTitleTv;
+        private TextView mMoreTv;
+        private RecyclerView mRecyclerView;
+
+        public RecommendViewHolder(View itemView) {
             super(itemView);
             mTitleTv = (TextView) itemView.findViewById(R.id.item_tv_title);
             mMoreTv = (TextView) itemView.findViewById(R.id.item_tv_more);
