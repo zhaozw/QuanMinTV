@@ -23,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 case TO_MAIN:
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
             }
         }
