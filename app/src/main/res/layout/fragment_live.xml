@@ -2,13 +2,11 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_live"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d93b3b"
-        android:gravity="center"
-        android:text="@string/str_live"
-        android:textColor="#fff"
-        android:textSize="18sp"/>
+        android:layout_marginRight="10dp"></android.support.v7.widget.RecyclerView>
 
+    <include layout="@layout/layout_loading"/>
 </FrameLayout>

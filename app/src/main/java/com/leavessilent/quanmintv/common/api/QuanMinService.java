@@ -2,6 +2,8 @@ package com.leavessilent.quanmintv.common.api;
 
 import com.leavessilent.quanmintv.category.model.CategoryModel;
 import com.leavessilent.quanmintv.home.model.HomeModel;
+import com.leavessilent.quanmintv.home.model.LinkObject;
+import com.leavessilent.quanmintv.live.model.AllLiveModel;
 
 import java.util.List;
 
@@ -18,4 +20,7 @@ public interface QuanMinService {
 
     @GET("categories/list.json")
     Observable<List<CategoryModel>> getCategoryModelList();
+
+    @GET("play/list.json")
+    Observable<AllLiveModel> getAllLive();
 }
